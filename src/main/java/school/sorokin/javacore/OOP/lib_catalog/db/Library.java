@@ -1,0 +1,38 @@
+package school.sorokin.javacore.OOP.lib_catalog.db;
+
+import school.sorokin.javacore.OOP.lib_catalog.model.Publication;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Library {
+
+    private static final List<Publication> publications = new ArrayList<>();
+
+    public static void addPublication(Publication pub) {
+        publications.add(pub);/*добавление публикации в каталог (не забудьте увеличить счетчик
+        публикаций в абстрактном классе).*/
+        Publication.increasePublicationCount();
+    }
+
+    public static StringBuilder listPublications() {
+        StringBuilder pubList = new StringBuilder();
+        for (Publication publication : publications) {
+            pubList.append(publication.toString())
+                   .append("\n");
+        }
+        return pubList; // вывод всех публикаций (используйте метод toString() ).
+
+    }
+
+    public static StringBuilder searchByAuthor(String author) {
+        StringBuilder titlesList = new StringBuilder();
+        for (Publication publication: publications) {
+            if (publication.getAuthor().toUpperCase().contains(author.toUpperCase())) {
+                titlesList.append(publication.getTitle()).append("\n");
+            }
+        }
+        return titlesList;//– поиск и вывод публикаций, где автор совпадает с заданным.
+    }
+
+}

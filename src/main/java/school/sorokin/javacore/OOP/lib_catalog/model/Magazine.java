@@ -1,13 +1,13 @@
-package school.sorokin.javacore.OOP.lib_catalog;
+package school.sorokin.javacore.OOP.lib_catalog.model;
 
 public class Magazine extends Publication {
 
     private final int issueNumber;
 
-    protected Magazine(String title,
-                       String author,
-                       int year,
-                       int issueNumber) {
+    public Magazine(String title,
+                    String author,
+                    int year,
+                    int issueNumber) {
         super(title, author, year);
         this.type = "Magazine";
         this.issueNumber = issueNumber;

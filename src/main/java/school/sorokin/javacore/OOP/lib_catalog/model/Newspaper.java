@@ -1,13 +1,13 @@
-package school.sorokin.javacore.OOP.lib_catalog;
+package school.sorokin.javacore.OOP.lib_catalog.model;
 
 public class Newspaper extends Publication {
 
     private final String publicationDay;
 
-    protected Newspaper(String title,
-                        String author,
-                        String publicationDay,
-                        int year) {
+    public Newspaper(String title,
+                     String author,
+                     String publicationDay,
+                     int year) {
         super(title, author, year);
         this.type = "Newspaper";
         this.publicationDay = publicationDay;

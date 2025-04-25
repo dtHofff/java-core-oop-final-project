@@ -1,4 +1,6 @@
-package school.sorokin.javacore.OOP.lib_catalog;
+package school.sorokin.javacore.OOP.lib_catalog.model;
+
+import java.util.Objects;
 
 public abstract class Publication implements Printable {
 
@@ -26,6 +28,25 @@ public abstract class Publication implements Printable {
         return type;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Publication that = (Publication) o;
+        return getYear() == that.getYear() && Objects.equals(getType(),
+                that.getType()) && Objects.equals(getTitle(),
+                that.getTitle()) && Objects.equals(getAuthor(),
+                that.getAuthor());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getType(), getTitle(), getAuthor(), getYear());
+    }
 
     public String getTitle() {
         return title;

@@ -1,10 +1,10 @@
-package school.sorokin.javacore.OOP.lib_catalog;
+package school.sorokin.javacore.OOP.lib_catalog.model;
 
 public class Book extends Publication {
 
     private final String isbn;
 
-    protected Book(String title, String author, String isbn, int year) {
+    public Book(String title, String author, String isbn, int year) {
         super(title, author, year);
         this.type = "Book";
         this.isbn = isbn;
