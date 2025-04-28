@@ -7,15 +7,25 @@ import java.util.List;
 
 public class Library {
 
-    private static final List<Publication> publications = new ArrayList<>();
+    private int publicationCount;
 
-    public static void addPublication(Publication pub) {
-        publications.add(pub);/*добавление публикации в каталог (не забудьте увеличить счетчик
-        публикаций в абстрактном классе).*/
-        Publication.increasePublicationCount();
+    public Library() {
+        publicationCount = 0;
     }
 
-    public static StringBuilder listPublications() {
+    private final List<Publication> publications = new ArrayList<>();
+
+    public int getPublicationCount() {
+        return publicationCount;
+    }
+
+    public void addPublication(Publication pub) {
+        publications.add(pub);/*добавление публикации в каталог (не забудьте увеличить счетчик
+        публикаций в абстрактном классе).*/
+        this.publicationCount++;
+    }
+
+    public StringBuilder listPublications() {
         StringBuilder pubList = new StringBuilder();
         for (Publication publication : publications) {
             pubList.append(publication.toString())
@@ -25,7 +35,7 @@ public class Library {
 
     }
 
-    public static StringBuilder searchByAuthor(String author) {
+    public StringBuilder searchByAuthor(String author) {
         StringBuilder titlesList = new StringBuilder();
         for (Publication publication: publications) {
             if (publication.getAuthor().toUpperCase().contains(author.toUpperCase())) {

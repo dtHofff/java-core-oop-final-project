@@ -8,34 +8,61 @@ import school.sorokin.javacore.OOP.lib_catalog.model.Publication;
 
 import java.util.Scanner;
 
-public class ConsoleView implements IView {
+public class ConsoleView {
 
-    private final String titleWord = "название";
-    private final String authorWord = "автор";
-    private final String yearWord = "год";
+    public ConsoleView(){
+        Library library = new Library();
+    }
+
+    private static final String TITLE_WORD = "название";
+    private static final String AUTHOR_WORD = "автор";
+    private static final String YEAR_WORD = "год";
+    private static final String NOT_INT_ALERT = "Нужно ввести число! Попробуйте еще раз: ";
+    private static final String IS_EMPTY_ALERT = "Поле не может быть пустым! Введите значение: ";
+
+     private String setStringField(final String request) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("%S: ", request);
+        String res = scanner.nextLine();
+        while (res.isEmpty()) {
+            System.out.println(IS_EMPTY_ALERT);
+            res = scanner.nextLine();
+        }
+        return res;
+    }
+
+     int setIntField(final String request) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("%S: ", request);
+        while (!scanner.hasNextInt()) {
+            System.out.println(NOT_INT_ALERT);
+            scanner = new Scanner(System.in);
+        }
+        return scanner.nextInt();
+    }
 
     protected void addNewBook() {
         final String isbnWord = "ISBN";
-        Library.addPublication(new Book(setStringField(titleWord),
-                setStringField(authorWord),
+        Library.addPublication(new Book(setStringField(TITLE_WORD),
+                setStringField(AUTHOR_WORD),
                 setStringField(isbnWord),
-                setIntField(yearWord)));
+                setIntField(YEAR_WORD)));
     }
 
     private void addNewMagazine() {
         final String issueNumWord = "номер выпуска";
-        Library.addPublication(new Magazine(setStringField(titleWord),
-                setStringField(authorWord),
-                setIntField(yearWord),
+        Library.addPublication(new Magazine(setStringField(TITLE_WORD),
+                setStringField(AUTHOR_WORD),
+                setIntField(YEAR_WORD),
                 setIntField(issueNumWord)));
     }
 
     private void addNewNewsPaper(){
         final String publicationDayWord = "день публикации";
-        Library.addPublication(new Newspaper(setStringField(titleWord),
-                setStringField(authorWord),
+        Library.addPublication(new Newspaper(setStringField(TITLE_WORD),
+                setStringField(AUTHOR_WORD),
                 setStringField(publicationDayWord),
-                setIntField(yearWord)));
+                setIntField(YEAR_WORD)));
     }
 
     private void showPublications(){

@@ -8,20 +8,12 @@ public abstract class Publication implements Printable {
     private String title;
     private String author;
     private int year;
-    private static int publicationCount = 0;
+
 
     protected Publication(String title, String author, int year) {
            this.title = title;
            this.year = year;
            this.author = author;
-    }
-
-    public static int getPublicationCount() {
-        return publicationCount;
-    }
-
-    public static void increasePublicationCount() {
-        Publication.publicationCount++;
     }
 
     public String getType() {
