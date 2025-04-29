@@ -13,12 +13,6 @@ public class Magazine extends Publication {
         this.issueNumber = issueNumber;
     }
 
-
-    @Override
-    public String getType() {
-        return super.getType();
-    }
-
     public int getIssueNumber() {
         return issueNumber;
     }
@@ -32,10 +26,4 @@ public class Magazine extends Publication {
                 getYear(),
                 getIssueNumber());
     }
-
-    @Override
-    public void printDetails() {
-
-    }
-
 }

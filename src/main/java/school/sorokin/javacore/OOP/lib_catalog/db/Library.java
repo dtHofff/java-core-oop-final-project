@@ -35,14 +35,14 @@ public class Library {
 
     }
 
-    public StringBuilder searchByAuthor(String author) {
+    public String searchByAuthor(String author) {
         StringBuilder titlesList = new StringBuilder();
         for (Publication publication: publications) {
             if (publication.getAuthor().toUpperCase().contains(author.toUpperCase())) {
                 titlesList.append(publication.getTitle()).append("\n");
             }
         }
-        return titlesList;//– поиск и вывод публикаций, где автор совпадает с заданным.
+        return titlesList.toString();//– поиск и вывод публикаций, где автор совпадает с заданным.
     }
 
 }

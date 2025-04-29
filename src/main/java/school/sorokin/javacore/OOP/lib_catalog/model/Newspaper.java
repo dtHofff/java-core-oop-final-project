@@ -29,11 +29,6 @@ public class Newspaper extends Publication {
 
 
     @Override
-    public String getType() {
-        return super.getType();
-    }
-
-    @Override
     public void printDetails() {
 
     }

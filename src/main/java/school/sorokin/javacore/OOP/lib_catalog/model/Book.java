@@ -15,11 +15,6 @@ public class Book extends Publication {
     }
 
     @Override
-    public String getType() {
-        return super.getType();
-    }
-
-    @Override
     public String toString() {
         return String.format("%s{title:'%s', author:'%s', year:'%d', ISBN:'%s'}",
                 getType(),
@@ -28,11 +23,4 @@ public class Book extends Publication {
                 getYear(),
                 getIsbn());
     }
-
-
-    @Override
-    public void printDetails() {
-
-    }
-
 }

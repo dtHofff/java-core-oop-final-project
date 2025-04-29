@@ -64,4 +64,8 @@ public abstract class Publication implements Printable {
         this.year = year;
     }
 
+    @Override
+    public void printDetails() {
+        System.out.println(this);
+    }
 }
