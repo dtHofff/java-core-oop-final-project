@@ -11,11 +11,17 @@ public class ConsoleView {
 
     Library library = new Library();
 
+    public static final int BOOK = 1;
+    public static final int MAGAZINE = 2;
+    public static final int NEWSPAPER = 3;
     private static final int NEW_PUB_KEY = 1;
     private static final int PUB_LIST_KEY = 2;
     private static final int SEARCH_KEY = 3;
     private static final int PUB_COUNT_KEY = 4;
     private static final int EXIT_KEY = 0;
+    public static final String ISBN_WORD = "ISBN";
+    public static final String ISSUE_NUM_WORD = "номер выпуска";
+    public static final String PUBLICATION_DAY_WORD = "день публикации";
     private static final String TITLE_WORD = "название";
     private static final String AUTHOR_WORD = "автор";
     private static final String YEAR_WORD = "год";
@@ -23,7 +29,11 @@ public class ConsoleView {
     private static final String NEGATIVE_INT_ALERT = "Число не может быть меньше нуля! Попробуйте еще раз: ";
     private static final String NOT_INT_ALERT = "Нужно ввести число! Попробуйте еще раз: ";
     private static final String IS_EMPTY_ALERT = "Поле не может быть пустым! Введите значение: ";
-    private static final String PUB_TYPE_WORD = String.format("""
+    public static final String PUB_TYPE_WORD = String.format("Выберете тип публикации:" +
+                    " %d - Book, %d - Magazine, %d - Newspaper",
+            BOOK, MAGAZINE, NEWSPAPER);
+
+    private static final String CONSOLE_MENU = String.format("""
                 
                 %d Добавить новую публикацию
                 %d Вывести список всех публикаций
@@ -72,26 +82,23 @@ public class ConsoleView {
     }
 
     private void addNewBook() {
-        final String isbnWord = "ISBN";
         library.addPublication(new Book(setStringField(TITLE_WORD),
                 setStringField(AUTHOR_WORD),
-                setStringField(isbnWord),
+                setStringField(ISBN_WORD),
                 setPositiveIntField(YEAR_WORD)));
     }
 
     private void addNewMagazine() {
-        final String issueNumWord = "номер выпуска";
         library.addPublication(new Magazine(setStringField(TITLE_WORD),
                 setStringField(AUTHOR_WORD),
                 setPositiveIntField(YEAR_WORD),
-                setPositiveIntField(issueNumWord)));
+                setPositiveIntField(ISSUE_NUM_WORD)));
     }
 
     private void addNewNewsPaper(){
-        final String publicationDayWord = "день публикации";
         library.addPublication(new Newspaper(setStringField(TITLE_WORD),
                 setStringField(AUTHOR_WORD),
-                setStringField(publicationDayWord),
+                setStringField(PUBLICATION_DAY_WORD),
                 setPositiveIntField(YEAR_WORD)));
     }
 
@@ -112,25 +119,17 @@ public class ConsoleView {
     }
 
     private void choseAndAddPub(){
-        final int book = 1;
-        final int magazine = 2;
-        final int newspaper = 3;
-
-        final String pubTypeWord = String.format("Выберете тип публикации:" +
-                        " %d - Book, %d - Magazine, %d - Newspaper",
-                book, magazine, newspaper);
-        final String wrongIntAlert = "Вы ввели некорректное число! Попробуйте еще раз";
 
         while (true) {
-            switch (setPositiveIntField(pubTypeWord)) {
-                case book: addNewBook();
+            switch (setPositiveIntField(PUB_TYPE_WORD)) {
+                case BOOK: addNewBook();
                     return;
-                case magazine: addNewMagazine();
+                case MAGAZINE: addNewMagazine();
                     return;
-                case newspaper: addNewNewsPaper();
+                case NEWSPAPER: addNewNewsPaper();
                     return;
                 default:
-                    System.out.println(wrongIntAlert);
+                    System.out.println(WRONG_INT_ALERT);
             }
         }
     }
@@ -141,7 +140,7 @@ public class ConsoleView {
 
     private void showMenu() {
         while (true) {
-            switch (setPositiveIntField(PUB_TYPE_WORD)) {
+            switch (setPositiveIntField(CONSOLE_MENU)) {
                 case NEW_PUB_KEY: choseAndAddPub();
                 return;
                 case PUB_LIST_KEY: showPublications();
